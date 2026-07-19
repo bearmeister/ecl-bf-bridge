@@ -1,0 +1,20 @@
+# Organisation: Bullets'n'Bandages
+# Author:       Bushy <contact@bushy.dev>
+# Version:      v1.0.8
+# Modified:     2026-07-19
+#
+# project.toml - hemtt build config for @ECL-BF-Bridge client+server mod
+
+name = "ECL-BF-Bridge"
+prefix = "EclBfBridge"
+mainprefix = "BNB"
+author = "Bushy"
+
+[version]
+major = 1
+minor = 2
+patch = 3
+build = 0
+
+[signing]
+authority = "Bushy"
