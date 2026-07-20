@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.0.1
-// Modified:     2026-07-18
+// Version:      v1.0.2
+// Modified:     2026-07-20
 //
 // BNB_ECL_Log.c - opt-in audit logging for lock lifecycle and entry attempts.
 // Server-side only; lines go to a per-day file under $profile:EclBfBridge\logs
@@ -44,10 +44,24 @@ class BNB_EclBridgeLog
         EmitWho(evt, lock, parent, who);
     }
 
+    // Player names reach here verbatim - strip control chars so a crafted
+    // persona cannot forge a log line, and cap length.
+    protected static string Sanitize(string raw)
+    {
+        string s = raw;
+        s.Replace("\n", " ");
+        s.Replace("\r", " ");
+        s.Replace("\t", " ");
+        if (s.Length() > 96)
+            s = s.Substring(0, 96);
+        return s;
+    }
+
     protected static void EmitWho(string evt, EntityAI lock, EntityAI parent, string who)
     {
         if (!GetGame() || !GetGame().IsServer())
             return;
+        who = Sanitize(who);
         if (who == "")
             who = "-";
         string lockType = "-";

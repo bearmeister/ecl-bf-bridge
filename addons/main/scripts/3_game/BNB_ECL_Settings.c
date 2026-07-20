@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.2.0
-// Modified:     2026-07-18
+// Version:      v1.2.1
+// Modified:     2026-07-20
 //
 // BNB_ECL_Settings.c - server-owner settings for the ECL BF Bridge.
 // Every flag defaults to 0 (OFF): out of the box the bridge only adds
@@ -12,7 +12,6 @@
 // JSON data carrier - member names bind 1:1 to the settings file keys.
 class BNB_EclBridgeSettingsData
 {
-    int version = 1;
     // Press-F access for players who have entered this lock's PIN before:
     // 0 = off, 1 = unlock only, 2 = unlock + open in one action.
     int quick_access_known_code = 0;

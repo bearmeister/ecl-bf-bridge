@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.3.2
-// Modified:     2026-07-18
+// Version:      v1.3.3
+// Modified:     2026-07-20
 //
 // BNB_ECL_BFSupport.c - Electric CodeLock support for Building Fortifications
 // doors. Single modded BM_CodeLock block: extends the lock's supported-parent
@@ -51,6 +51,20 @@ modded class BM_CodeLock
     {
         m_BNB_CoolingDown = false;
         SetSynchDirty();
+    }
+
+    // Cancel entity-hosted timers before detach/destroy (mirrors upstream's
+    // RemoveByName) - a cooldown clear must not fire on a re-attached lock.
+    protected void BNB_CancelBridgeTimers()
+    {
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).RemoveByName(this, "BNB_EndCodeLockCooldown");
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).RemoveByName(this, "BNB_QuickUnlockBeepTick");
+        m_BNB_QuickUnlockPending = false;
+        if (m_BNB_CoolingDown)
+        {
+            m_BNB_CoolingDown = false;
+            SetSynchDirty();
+        }
     }
 
     bool BNB_KnowsCode(string guid)
@@ -286,6 +300,11 @@ modded class BM_CodeLock
             if (!ctx.Read(legacyBattery))
                 return true;
         }
+        else if (bnbVer != BNB_ECL_STREAM_VERSION)
+        {
+            // Unknown/newer layout - stop before misreading a foreign trailer.
+            return true;
+        }
         int count;
         if (!ctx.Read(count))
             return true;
@@ -401,6 +420,7 @@ modded class BM_CodeLock
 
     override void PrepareForDetach()
     {
+        BNB_CancelBridgeTimers();
         BNB_ForgetCodes();
         super.PrepareForDetach();
     }
@@ -408,7 +428,10 @@ modded class BM_CodeLock
     override void OnParentDestroyed()
     {
         if (GetGame().IsServer())
+        {
+            BNB_CancelBridgeTimers();
             BNB_ForgetCodes();
+        }
         super.OnParentDestroyed();
     }
 

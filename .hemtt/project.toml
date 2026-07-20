@@ -1,7 +1,7 @@
 # Organisation: Bullets'n'Bandages
 # Author:       Bushy <contact@bushy.dev>
-# Version:      v1.0.8
-# Modified:     2026-07-19
+# Version:      v1.0.9
+# Modified:     2026-07-20
 #
 # project.toml - hemtt build config for @ECL-BF-Bridge client+server mod
 
@@ -13,7 +13,7 @@ author = "Bushy"
 [version]
 major = 1
 minor = 2
-patch = 3
+patch = 4
 build = 0
 
 [signing]

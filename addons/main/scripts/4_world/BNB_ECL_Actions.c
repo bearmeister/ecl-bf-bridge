@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.0.1
-// Modified:     2026-07-18
+// Version:      v1.0.2
+// Modified:     2026-07-20
 //
 // BNB_ECL_Actions.c - Electric CodeLock action conditions generalised to
 // Building Fortifications doors: attach, keypad, lock, change-pass and detach
@@ -220,6 +220,10 @@ modded class ActionDetachBMCodeLock
             return;
         BM_CodeLock lock = BM_CodeLock.Cast(door.FindAttachmentBySlotName("Att_CombinationLock"));
         if (!lock)
+            return;
+        // Belt-and-suspenders: never drop a locked lock even if the framework's
+        // per-tick ActionCondition re-eval were bypassed.
+        if (lock.IsLocked())
             return;
         int slotId = InventorySlots.GetSlotIdFromString("Att_CombinationLock");
         door.GetInventory().SetSlotLock(slotId, false);
