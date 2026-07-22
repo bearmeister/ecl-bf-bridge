@@ -65,9 +65,10 @@ Notes:
 
 ## Status
 
-This repository is a one-way source publication of the mod shipped on the
-Steam Workshop. It does not accept issues or pull requests. Fork it if you
-want to build on it, within the license terms below.
+This repository is a one-way, automatically published mirror of the mod
+shipped on the Steam Workshop. It does not accept issues or pull requests. Fork
+it if you want to build on it, within the license terms below. Bugs can be
+reported on the Steam Workshop page.
 
 ## Credits and acknowledgements
 
