@@ -18,8 +18,7 @@ the `v` tags in this repository.
 
 ## v1.2.3
 
-- Workshop page only: dropped the development banner and added a link to the
-  GitHub source. No code change.
+- Workshop page only: added a link to the GitHub source. No code change.
 
 ## v1.2.2
 
