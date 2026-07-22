@@ -66,9 +66,10 @@ Notes:
 ## Status
 
 This repository is a one-way, automatically published mirror of the mod
-shipped on the Steam Workshop. It does not accept issues or pull requests. Fork
-it if you want to build on it, within the license terms below. Bugs can be
-reported on the Steam Workshop page.
+shipped on the Steam Workshop. It does not accept issues or pull requests.
+Fork it if you want to build on it, within the license terms below.
+
+Version history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Credits and acknowledgements
 
