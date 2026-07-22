@@ -1,6 +1,6 @@
 # ECL-BF-Bridge
 
-**v1.2.4**
+**v1.2.5**
 
 Attach and operate the **Electric CodeLock** on **Building Fortifications**
 barricade doors (single and double). This is a standalone compatibility

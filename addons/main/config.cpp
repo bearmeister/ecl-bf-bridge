@@ -16,7 +16,7 @@ class CfgPatches
         requiredVersion = 0.1;
         // Load after both upstreams so the modded-class layers land on top.
         requiredAddons[] = { "DZ_Data", "DZ_Scripts", "BM_CodeLock_Client", "BM_CodeLock", "BuildingFortifications" };
-        version = "1.2.4";
+        version = "1.2.5";
     };
 };
 

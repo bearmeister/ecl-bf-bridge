@@ -4,6 +4,13 @@ Notable changes to ECL-BF-Bridge. Versions here follow the Steam Workshop
 releases. Source history in this repository starts at v1.2.3, so `v` tags exist
 only from that release onward; earlier entries are recorded for reference.
 
+## v1.2.5
+
+- A licence file is bundled with the mod: CC BY-NC 4.0 terms, the DayZ
+  trademark notice required of unofficial modifications and a statement that
+  Electric CodeLock and Building Fortifications remain separate mods under
+  their own authors' terms.
+
 ## v1.2.4
 
 - Player names are sanitised before being written to the log: newlines,
