@@ -46,10 +46,6 @@ Subscribe on the Steam Workshop (recommended for players and most servers):
 
 https://steamcommunity.com/sharedfiles/filedetails/?id=3766801953
 
-For a manual server install, drop the packed `@ECL-BF-Bridge` mod folder
-into the server's mod set alongside the two required upstream mods and load
-it after them.
-
 ## Build
 
 Built with [HEMTT](https://github.com/BrettMayson/HEMTT). From the mod root:
