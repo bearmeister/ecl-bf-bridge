@@ -20,14 +20,14 @@ defaults on first server start).
 
 | Setting | Effect |
 |---|---|
-| `quick_access_known_code` | A player who has entered a lock's PIN once can press-F for quick access (keypad beeps out digits as if they were entered). `1` = unlock only (the prompt reads Unlock), `2` = unlock and open in one action (the prompt reads Unlock & Open). Access is per-lock, persisted, and wiped when the code changes. |
+| `quick_access_known_code` | A player who has entered a lock's PIN once can press-F for quick access (keypad beeps out digits as if they were entered). `1` = unlock only (the prompt reads Unlock), `2` = unlock and open in one action (the prompt reads Unlock & Open). Access is per-lock, persisted and wiped when the code changes. |
 | `auto_lock_on_close` | A coded lock re-engages automatically when the door closes. |
 | `auto_lock_on_code_set` | Setting or re-keying a code on a closed door locks it immediately. |
 | `keypad_open_after_attach` | Attaching a codeless lock opens the keypad straight into set-PIN mode. |
 | `replace_shock_with_cooldown` | Replaces the wrong-code electric shock with a keypad lockout (`wrong_code_cooldown_ms`, default 5000). |
 | `screwdriver_detach_open_door` | A screwdriver detaches an unlocked lock from an open door. |
 | `require_fully_built` | The door must be fully built (planked on both faces plus hinged) before the code lock will attach (highly recommended). |
-| `mask_code_display` | PIN privacy. By default every entered digit is shown live on the lock's LCD display for anyone watching (and stays readable for up to 30 seconds if entry is abandoned). With this on, no one ever sees the digits: bystanders see solid blocks on the lock, the typing player sees one `*` per keypress on the keypad, and the PIN never leaves the typing player's client except in the final submit to the server. Exception: while setting or changing a PIN, the typing player sees the digits they enter (so they can be certain of the code they set); everyone else still sees blocks. |
+| `mask_code_display` | PIN privacy. By default every entered digit is shown live on the lock's LCD display for anyone watching (and stays readable for up to 30 seconds if entry is abandoned). With this on, no one ever sees the digits: bystanders see solid blocks on the lock, the typing player sees one `*` per keypress on the keypad and the PIN never leaves the typing player's client except in the final submit to the server. Exception: while setting or changing a PIN, the typing player sees the digits they enter (so they can be certain of the code they set); everyone else still sees blocks. |
 | `log_lock_events` | Audit logging for lock lifecycle events (attach, detach, code set, admin code set, lock) to a per-day file under `profiles/EclBfBridge/logs/`, with player name, SteamID and position. Also mirrored to the vanilla admin log (`.ADM`) when the server runs `-adminlog`. PIN values are never logged. |
 | `log_entry_events` | Audit logging for entry attempts (unlock, failed entry, cooldown trigger, attempts refused during a cooldown) to the same sinks. A wrong PIN that starts a cooldown logs both the failed entry and the cooldown trigger. |
 

@@ -1,8 +1,8 @@
 # Changelog
 
-Notable changes to ECL-BF-Bridge. This repository is a one-way source mirror of
-the mod on the Steam Workshop; the versions here match the Workshop release and
-the `v` tags in this repository.
+Notable changes to ECL-BF-Bridge. Versions here follow the Steam Workshop
+releases. Source history in this repository starts at v1.2.3, so `v` tags exist
+only from that release onward; earlier entries are recorded for reference.
 
 ## v1.2.4
 
