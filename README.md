@@ -86,3 +86,7 @@ Modify, repack and fork for non-commercial use with attribution. See
 [LICENSE](LICENSE). This mod ships only Bullets'n'Bandages-authored script
 layers; the Electric CodeLock and Building Fortifications remain their
 authors' work under their own terms.
+
+DAYZ is a registered trademark of Bohemia Interactive a.s. This is an
+unofficial modification that is not affiliated or authorized by Bohemia
+Interactive a.s.

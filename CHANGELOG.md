@@ -1,8 +1,8 @@
 # Changelog
 
 Notable changes to ECL-BF-Bridge. Versions here follow the Steam Workshop
-releases. Source history in this repository starts at v1.2.3, so `v` tags exist
-only from that release onward; earlier entries are recorded for reference.
+releases. Source history in this repository starts at v1.2.3; not every Workshop
+release is tagged here, and earlier entries are recorded for reference.
 
 ## v1.2.5
 
