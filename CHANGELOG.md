@@ -4,6 +4,20 @@ Notable changes to ECL-BF-Bridge. Versions here follow the Steam Workshop
 releases. Source history in this repository starts at v1.2.3; not every Workshop
 release is tagged here, and earlier entries are recorded for reference.
 
+## v1.2.6
+
+- Log destinations are now independently selectable. Two settings decide
+  where audited events are written: `log_to_admin_log` (default on) sends
+  lines to the vanilla DayZ admin log (`.ADM`), and `log_to_daily_log`
+  (default off) writes an isolated per-day copy under
+  `profiles/EclBfBridge/logs/` carrying only this mod's lines. Use either,
+  both or neither. The `log_lock_events` and `log_entry_events` switches
+  still decide whether an event is logged at all and stay off by default.
+- The admin panel Open and Close Gate actions now operate on Building
+  Fortifications doors instead of doing nothing.
+- Fix: an admin Open on a Building Fortifications element with no hinges no
+  longer leaves it stuck open and refusing every later code-lock attach.
+
 ## v1.2.5
 
 - A licence file is bundled with the mod: CC BY-NC 4.0 terms, the DayZ

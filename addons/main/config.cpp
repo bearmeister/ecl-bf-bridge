@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.0.4
-// Modified:     2026-07-20
+// Version:      v1.0.6
+// Modified:     2026-07-23
 //
 // config.cpp - ECL BF Bridge: Electric CodeLock support on Building
 // Fortifications doors, with optional server-configurable QoL features
@@ -16,7 +16,7 @@ class CfgPatches
         requiredVersion = 0.1;
         // Load after both upstreams so the modded-class layers land on top.
         requiredAddons[] = { "DZ_Data", "DZ_Scripts", "BM_CodeLock_Client", "BM_CodeLock", "BuildingFortifications" };
-        version = "1.2.5";
+        version = "1.2.6";
     };
 };
 

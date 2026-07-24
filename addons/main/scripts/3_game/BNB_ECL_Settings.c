@@ -1,13 +1,15 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.2.1
-// Modified:     2026-07-20
+// Version:      v1.2.2
+// Modified:     2026-07-23
 //
 // BNB_ECL_Settings.c - server-owner settings for the ECL BF Bridge.
-// Every flag defaults to 0 (OFF): out of the box the bridge only adds
+// Every feature flag defaults to 0 (OFF): out of the box the bridge only adds
 // Building Fortifications door support to the Electric CodeLock, mirroring
-// upstream behaviour. Configure in $profile:EclBfBridge\settings.json
-// (created with defaults on first boot).
+// upstream behaviour. The two sink selectors are the exception - the admin-log
+// sink defaults to 1, since it is the standard audit surface and is inert
+// unless a master log flag is also on. Configure in
+// $profile:EclBfBridge\settings.json (created with defaults on first boot).
 
 // JSON data carrier - member names bind 1:1 to the settings file keys.
 class BNB_EclBridgeSettingsData
@@ -32,10 +34,15 @@ class BNB_EclBridgeSettingsData
     // Require a fully planked + hinged door before a lock can attach;
     // OFF follows BF's native hinge-only gating.
     int require_fully_built = 0;
-    // Audit logging to $profile:EclBfBridge\logs\ (mirrored to the vanilla
-    // admin log when the server runs -adminlog). PIN values are never logged.
+    // Audit logging master switches - whether an event is logged at all.
+    // PIN values are never logged.
     int log_lock_events = 0;
     int log_entry_events = 0;
+    // Sink selectors - where a logged event goes.
+    // Vanilla admin log (.ADM), active only with -adminlog.
+    int log_to_admin_log = 1;
+    // Per-day file under $profile:EclBfBridge\logs\.
+    int log_to_daily_log = 0;
 }
 
 // Read API. Server fills from disk via the 4_World loader; clients receive a
@@ -115,5 +122,15 @@ class BNB_EclBridgeSettings
     static bool LogEntryEvents()
     {
         return s_Data.log_entry_events != 0;
+    }
+
+    static bool LogToAdminLog()
+    {
+        return s_Data.log_to_admin_log != 0;
+    }
+
+    static bool LogToDailyLog()
+    {
+        return s_Data.log_to_daily_log != 0;
     }
 }

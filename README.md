@@ -1,6 +1,6 @@
 # ECL-BF-Bridge
 
-**v1.2.5**
+**v1.2.6**
 
 Attach and operate the **Electric CodeLock** on **Building Fortifications**
 barricade doors (single and double). This is a standalone compatibility
@@ -28,8 +28,21 @@ defaults on first server start).
 | `screwdriver_detach_open_door` | A screwdriver detaches an unlocked lock from an open door. |
 | `require_fully_built` | The door must be fully built (planked on both faces plus hinged) before the code lock will attach (highly recommended). |
 | `mask_code_display` | PIN privacy. By default every entered digit is shown live on the lock's LCD display for anyone watching (and stays readable for up to 30 seconds if entry is abandoned). With this on, no one ever sees the digits: bystanders see solid blocks on the lock, the typing player sees one `*` per keypress on the keypad and the PIN never leaves the typing player's client except in the final submit to the server. Exception: while setting or changing a PIN, the typing player sees the digits they enter (so they can be certain of the code they set); everyone else still sees blocks. |
-| `log_lock_events` | Audit logging for lock lifecycle events (attach, detach, code set, admin code set, lock) to a per-day file under `profiles/EclBfBridge/logs/`, with player name, SteamID and position. Also mirrored to the vanilla admin log (`.ADM`) when the server runs `-adminlog`. PIN values are never logged. |
-| `log_entry_events` | Audit logging for entry attempts (unlock, failed entry, cooldown trigger, attempts refused during a cooldown) to the same sinks. A wrong PIN that starts a cooldown logs both the failed entry and the cooldown trigger. |
+| `log_lock_events` | Audit logging for lock lifecycle events (attach, detach, code set, admin code set, lock), with player name, SteamID and position. PIN values are never logged. |
+| `log_entry_events` | Audit logging for entry attempts (unlock, failed entry, cooldown trigger, attempts refused during a cooldown). A wrong PIN that starts a cooldown logs both the failed entry and the cooldown trigger. |
+
+## Logging and auditing
+
+Logging is off by default: the bridge writes nothing until you turn on
+`log_lock_events` or `log_entry_events` above. Those decide whether an
+event is recorded; two further settings decide where each line goes, and
+they work independently so you can use either, both or neither. PIN values
+are never written to either destination.
+
+| Setting | Effect |
+|---|---|
+| `log_to_admin_log` | Default on. Writes to the vanilla DayZ admin log (`.ADM`), the standard player-action audit surface. The server must run with `-adminlog` or the file is never produced. |
+| `log_to_daily_log` | Default off. Opt-in isolated copy: one file per day under `profiles/EclBfBridge/logs/` carrying only this mod's lines, useful for keeping bridge activity separate from the `.ADM` stream. |
 
 ## Tested against
 

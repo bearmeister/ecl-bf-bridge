@@ -1,7 +1,7 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.3.3
-// Modified:     2026-07-20
+// Version:      v1.3.4
+// Modified:     2026-07-23
 //
 // BNB_ECL_BFSupport.c - Electric CodeLock support for Building Fortifications
 // doors. Single modded BM_CodeLock block: extends the lock's supported-parent
@@ -272,6 +272,40 @@ modded class BM_CodeLock
             return door.IsOpened();
         #endif
         return super.BM_IsGateOpenedForParent(parent);
+    }
+
+    // Upstream's admin gate helpers branch on Fence only, so an admin panel
+    // Open/Close silently no-ops on a BF door. Route those to BF's own methods.
+    override protected void BM_AdminOpenParent(EntityAI parent)
+    {
+        #ifdef BuildingFortifications
+        BuildingFortficationsCore door = BuildingFortficationsCore.Cast(parent);
+        if (door)
+        {
+            // Hinge check, not CanOpenFence: an admin bypasses the lock, but a
+            // gateless element must not persist an opened state it cannot show.
+            if (door.HasHinges() && !door.IsOpened())
+                door.OpenFence();
+            return;
+        }
+        #endif
+        super.BM_AdminOpenParent(parent);
+    }
+
+    override protected void BM_AdminCloseParent(EntityAI parent)
+    {
+        #ifdef BuildingFortifications
+        BuildingFortficationsCore door = BuildingFortficationsCore.Cast(parent);
+        if (door)
+        {
+            // No hinge check: closing only clears state, so it stays available
+            // to recover a door. Honours auto_lock_on_close like a player close.
+            if (door.IsOpened())
+                door.CloseFence();
+            return;
+        }
+        #endif
+        super.BM_AdminCloseParent(parent);
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)

@@ -1,12 +1,12 @@
 // Organisation: Bullets'n'Bandages
 // Author:       Bushy <contact@bushy.dev>
-// Version:      v1.0.2
-// Modified:     2026-07-20
+// Version:      v1.0.3
+// Modified:     2026-07-23
 //
 // BNB_ECL_Log.c - opt-in audit logging for lock lifecycle and entry attempts.
-// Server-side only; lines go to a per-day file under $profile:EclBfBridge\logs
-// and mirror to the vanilla admin log (.ADM, active only with -adminlog).
-// PIN values are never logged.
+// Server-side only. Each sink is independently selectable: the vanilla admin
+// log (.ADM, active only with -adminlog) and a per-day file under
+// $profile:EclBfBridge\logs. PIN values are never logged.
 
 class BNB_EclBridgeLog
 {
@@ -80,8 +80,10 @@ class BNB_EclBridgeLog
         int px = Math.Round(pos[0]);
         int pz = Math.Round(pos[2]);
         string line = Stamp() + " [EclBfBridge] " + evt + " lock=" + lockType + " door=" + parentType + " pos=" + px.ToString() + " " + pz.ToString() + " player=" + who;
-        WriteFile(line);
-        GetGame().AdminLog(line);
+        if (BNB_EclBridgeSettings.LogToDailyLog())
+            WriteFile(line);
+        if (BNB_EclBridgeSettings.LogToAdminLog())
+            GetGame().AdminLog(line);
     }
 
     protected static void WriteFile(string line)
