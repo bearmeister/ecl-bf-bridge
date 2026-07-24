@@ -7,6 +7,9 @@ barricade doors (single and double). This is a standalone compatibility
 bridge: it contains no code or assets from either mod and requires both as
 separate subscriptions.
 
+**This mod is free for community use, repack or fork, and always will be, with
+attribution. See the License section below.**
+
 ## What it does out of the box
 
 Out of the box the bridge mirrors upstream Electric CodeLock vanilla-style
